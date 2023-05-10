@@ -1,16 +1,16 @@
-BIG = 'big'
+BIG = "big"
 CHAR_SIZE = 1
 
 
 def decompress(input_file, output_file):
 
     output = ""
-    with open(input_file, 'rb') as file:
-        values = ['']
+    with open(input_file, "rb") as file:
+        values = [""]
         index_size = int.from_bytes(file.read(CHAR_SIZE), BIG)
         index = int.from_bytes(file.read(index_size), BIG)
         char = file.read(CHAR_SIZE)
-        string: str = ''
+        string = ""
         while char:
             char = chr(ord(char))
             string = values[index] + char
@@ -25,5 +25,5 @@ def decompress(input_file, output_file):
     string = values[index]
     output += string
 
-    with open(output_file, 'w', encoding="utf-8") as file:
+    with open(output_file, "w", encoding="utf-8") as file:
         file.write(output)
