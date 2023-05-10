@@ -19,10 +19,6 @@ class Node:
         return self.children[ord(key)]
 
 
-def get_node(node, char):
-    return node.get_child(char)
-
-
 class Trie:
     code = 1
 
@@ -41,3 +37,7 @@ class Trie:
         node = reduce(get_node, key, self.root)
 
         return node.value
+
+
+def get_node(node, char):
+    return node.get_child(char)
