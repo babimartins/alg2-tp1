@@ -2,23 +2,23 @@ from functools import reduce
 from math import ceil
 from trie import Trie
 
-BIG = 'big'
+BIG = "big"
 CHAR_SIZE = 1
 
 
 def compress(input_file, output_file):
     input = ""
-    with open(input_file, 'r', encoding="utf-8") as file:
+    with open(input_file, "r", encoding="utf-8") as file:
         input = file.read()
 
-    init = [Trie(), bytes(), '']
+    init = [Trie(), bytes(), ""]
     dictionary, output, string = reduce(__reduce_function, input, init)
 
     index = dictionary.find(string)
     index_size = ceil(index.bit_length() / 8.0)
     output += index_size.to_bytes(1, BIG) + index.to_bytes(index_size, BIG)
 
-    with open(output_file, 'wb') as file:
+    with open(output_file, "wb") as file:
         file.write(output)
 
 
@@ -39,6 +39,6 @@ def __reduce_function(tuples: tuple[Trie, bytes, str], char):
             index_size, BIG) + num_char.to_bytes(CHAR_SIZE, BIG)
 
         dictionary.insert(string + char)
-        string = ''
+        string = ""
 
     return (dictionary, output, string)
