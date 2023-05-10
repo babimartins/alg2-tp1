@@ -1,17 +1,20 @@
 import sys
 import os
 
+from compress import compress
+
 
 def main(argv):
     operation, input_file, output_file = get_arguments(argv)
 
+    file_name = ""
     if output_file:
         file_name = output_file
     else:
         file_name = input_file.replace('.txt', '.z78')
 
-    # if operation == '-c':
-    #     compress
+    if operation == '-c':
+        compress(input_file, file_name)
     # elif operation == '-x':
     #     decompress
 
