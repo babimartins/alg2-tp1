@@ -2,6 +2,7 @@ import sys
 import os
 
 from compress import compress
+from decompress import decompress
 
 
 def main(argv):
@@ -15,8 +16,8 @@ def main(argv):
 
     if operation == '-c':
         compress(input_file, file_name)
-    # elif operation == '-x':
-    #     decompress
+    elif operation == '-x':
+        decompress(input_file, file_name)
 
 
 def get_arguments(argv):
